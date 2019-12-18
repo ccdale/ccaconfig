@@ -4,7 +4,7 @@ from ccaconfig.config import ccaConfig
 
 
 def test_version():
-    assert __version__ == "0.1.0"
+    assert __version__ == "0.2.0"
 
 
 def test_object_creation():
@@ -15,12 +15,6 @@ def test_object_creation():
 def test_object_naming():
     confo = ccaConfig(appname="ccaconfig")
     assert confo.appname == "ccaconfig"
-
-
-def test_config_environment_set():
-    env = {"environment": "dev"}
-    confo = ccaConfig(envd=env)
-    assert confo.envd == env
 
 
 def test_findconfig():
@@ -36,3 +30,22 @@ def test_envOverrides():
     confo = ccaConfig(appname="ccaconfig")
     conf = confo.envOverride()
     assert conf == iconf
+
+
+def test_defaultconfig():
+    dconf = {"environment": "staging", "defaultval": "NotSet"}
+    iconf = {"environment": "prod", "product": "ccaconfig", "role": "config file"}
+    oconf = {"environment": "pre-prod"}
+    confo = ccaConfig(appname="ccaconfig", defaultd=dconf, overrided=oconf)
+    conf = confo.envOverride()
+    assert conf["defaultval"] == "NotSet"
+
+
+def test_overconf():
+    dconf = {"environment": "staging", "defaultval": "NotSet"}
+    iconf = {"environment": "prod", "product": "ccaconfig", "role": "config file"}
+    oconf = {"environment": "pre-prod"}
+    os.environ["CCACONFIG_ENVIRONMENT"] = "prod"
+    confo = ccaConfig(appname="ccaconfig", defaultd=dconf, overrided=oconf)
+    conf = confo.envOverride()
+    assert conf["environment"] == "pre-prod"

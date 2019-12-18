@@ -35,15 +35,20 @@ class ccaConfig:
     object to encapsulate reading and merging config files
     """
 
-    def __init__(self, appname=None, envd=None):
-        log.debug(f"ccaConfig starting. appname={appname}, envd={envd}")
+    def __init__(self, appname=None, defaultd=None, overrided=None):
+        log.debug(f"ccaConfig starting. appname={appname}")
         self.configfn = None
         self.setAppName(appname)
-        self.setEnvD(envd)
+        self.setDefaultd(defaultd)
+        self.setOverrided(overrided)
 
-    def setEnvD(self, envd):
-        log.debug(f"envd={envd}")
-        self.envd = envd
+    def setOverrided(self, overrided):
+        log.debug(f"overrided={overrided}")
+        self.overrided = overrided
+
+    def setDefaultd(self, defaultd):
+        log.debug(f"defaultd={defaultd}")
+        self.defaultd = defaultd
 
     def setAppName(self, appname):
         log.debug(f"appname={appname}")
@@ -67,7 +72,7 @@ class ccaConfig:
             errorRaise(fname, e)
 
     def findConfig(self):
-        config = {}
+        config = {} if self.defaultd is None else self.defaultd
         if self.appname is not None:
             cfn = f"{self.appname}.yaml"
             log.debug(f"will look for {cfn} as a config file")
@@ -85,6 +90,9 @@ class ccaConfig:
                 fname = sys._getframe().f_code.co_name
                 log.error(f"Exception {e} in {fname}")
                 errorRaise(fname, e)
+        if self.overrided is not None:
+            for item in self.overrided:
+                config[item] = self.overrided[item]
         return config
 
     def envOverride(self):
@@ -95,6 +103,9 @@ class ccaConfig:
                 if item.startswith(prefix):
                     vname = item.split(prefix)[1].lower()
                     config[vname] = os.environ[item]
+            if self.overrided is not None:
+                for item in self.overrided:
+                    config[item] = self.overrided[item]
             return config
         except Exception as e:
             fname = sys._getframe().f_code.co_name
