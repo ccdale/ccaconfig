@@ -21,7 +21,7 @@ APPNAME_VARIABLENAME
 ```
 
 will be found, chopped at the underscore, lower cased and set into the
-final configuration i.e.: `config[variablename]` will exist if there is an
+final configuration i.e: `config[variablename]` will exist if there is an
 environment variable `APPNAME_VARIABLENAME`.
 
 
@@ -29,16 +29,16 @@ environment variable `APPNAME_VARIABLENAME`.
 ```
 from ccaconfig import ccaConfig
 
-confo = ccaConfig(appname="appname")
-config = confo.envOverride()
+cf = ccaConfig(appname="appname")
+config = cf.envOverride()
 ```
 
 or, to not take environment variables into account:
 ```
 from ccaconfig import ccaConfig
 
-confo = ccaConfig(appname="appname")
-config = confo.findConfig()
+cf = ccaConfig(appname="appname")
+config = cf.findConfig()
 ```
 
 Two additional dictionaries can be supplied, the first `defaultd` can be
@@ -51,10 +51,10 @@ from ccaconfig import ccaConfig
 
 defd = {"environment": "dev"}
 overd = {"product": "myapp"}
-confo = ccaConfig(appname="appname", defaultd=defd, overrided=overd)
-config = confo.envOverride()
+cf = ccaConfig(appname="appname", defaultd=defd, overrided=overd)
+config = cf.envOverride()
 # config["environment"] == "dev" if it is not overridden by a subsequent
-# config file or from and environment variable
+# config file or from an environment variable
 #
 # config["product"] == "myapp" and will not be overridden, at all
 ```
