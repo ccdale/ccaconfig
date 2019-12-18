@@ -21,7 +21,9 @@ APPNAME_VARIABLENAME
 ```
 
 will be found, chopped at the underscore, lower cased and set into the
-final configuration.
+final configuration i.e.: `config[variablename]` will exist if there is an
+environment variable `APPNAME_VARIABLENAME`.
+
 
 ## Usage
 ```
