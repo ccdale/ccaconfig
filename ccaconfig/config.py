@@ -21,8 +21,6 @@ import ccalogging
 # from ccaconfig.errors import errorNotify
 from ccaconfig.errors import errorRaise
 
-ccalogging.setConsoleOut()
-ccalogging.setDebug()
 log = ccalogging.log
 
 
