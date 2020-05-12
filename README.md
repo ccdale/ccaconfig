@@ -10,6 +10,7 @@ The order of files to read is
 /etc/appname.yaml
 /etc/appname/appname.yaml
 $HOME/.config/appname.yaml
+$HOME/Library/Preferences/appname.yaml
 $HOME/.appname.yaml
 $(pwd)/appname.yaml
 ```
@@ -27,7 +28,7 @@ environment variable `APPNAME_VARIABLENAME`.
 
 ## Usage
 ```
-from ccaconfig import ccaConfig
+from ccaconfig.config import ccaConfig
 
 cf = ccaConfig(appname="appname")
 config = cf.envOverride()
@@ -35,7 +36,7 @@ config = cf.envOverride()
 
 or, to not take environment variables into account:
 ```
-from ccaconfig import ccaConfig
+from ccaconfig.config import ccaConfig
 
 cf = ccaConfig(appname="appname")
 config = cf.findConfig()
@@ -47,7 +48,7 @@ config variables that you do not want overridden by any config file found
 or from the environment.
 
 ```
-from ccaconfig import ccaConfig
+from ccaconfig.config import ccaConfig
 
 defd = {"environment": "dev"}
 overd = {"product": "myapp"}
