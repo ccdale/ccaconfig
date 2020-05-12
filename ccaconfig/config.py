@@ -79,7 +79,7 @@ class ccaConfig:
                     f"/etc/{cfn}",
                     f"/etc/{self.appname}/{cfn}",
                     os.path.expanduser(f"~/.config/{cfn}"),
-                    os.path.expanduser(f"~/Library/Preferences/{cfn}")
+                    os.path.expanduser(f"~/Library/Preferences/{cfn}"),
                     os.path.expanduser(f"~/.{cfn}"),
                     os.getcwd() + f"/{cfn}",
                 ]
