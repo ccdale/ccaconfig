@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ccaconfig"
-version = "0.3.4"
+version = "0.3.5"
 description = "Easily find and read application configuration files."
 license = "GPL-3.0-or-later"
 authors = ["Chris Allison <chris.charles.allison@gmail.com>"]
