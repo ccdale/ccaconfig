@@ -4,7 +4,7 @@ from ccaconfig.config import ccaConfig
 
 
 def test_version():
-    assert __version__ == "0.3.9"
+    assert __version__ == "0.4.0"
 
 
 def test_object_creation():
