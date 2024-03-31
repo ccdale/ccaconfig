@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ccaconfig"
-version = "0.3.11"
+version = "0.4.0"
 description = "Easily find and read application configuration files."
 license = "GPL-3.0-or-later"
 authors = ["Chris Allison <chris.charles.allison@gmail.com>"]
@@ -8,9 +8,9 @@ readme = "README.md"
 repository = "https://github.com/ccdale/ccaconfig"
 
 [tool.poetry.dependencies]
-python = ">=3.9"
+python = ">=3.9,<4.0"
 pyyaml = "^6.0"
-ccalogging = "^0.4.4"
+ccalogging = "^0.5.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7"
